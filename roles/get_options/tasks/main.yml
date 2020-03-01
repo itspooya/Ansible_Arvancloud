@@ -1,0 +1,18 @@
+- name: Get options
+  # You can use both servers but getting options doesn't matter which one you use
+  # https://napi.arvancloud.com/ecc/v1/regions/ir-thr-mn1/options
+  # https://napi.arvancloud.com/ecc/v1/regions/ir-thr-at1/options
+  uri:
+    url: https://napi.arvancloud.com/ecc/v1/regions/ir-thr-mn1/options
+    headers:
+      Authorization: "{{ api_key }}"
+      Content-Type: "accept: application/json"
+    method: GET
+  register: options
+  ignore_errors: yes
+  
+- name: copy output to file
+  copy:
+    content: "{{ options }}"
+    dest: "/tmp/output.txt"
+

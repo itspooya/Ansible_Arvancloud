@@ -1,0 +1,33 @@
+- name: Setup nodes
+  hosts: localhost
+  become: false
+  roles:
+  - get_options
+  vars: 
+    api_key : "Apikey XXXXXXXX"
+  
+  
+ 
+- name: Create Server
+  hosts: localhost
+  become: false
+  roles:
+    create_server
+  vars:
+    # Fill api_key with your api key provided from setting page of your account
+    api_key : "Apikey XXXXXXXX"
+    # Fill server_namee with name you want for your server
+    server_name: "server_name"
+    # key_name-> 0 for password or if you uploaded a ssh-key fill it with its name
+    key_name : "0"
+    # Network_id-> you can find out its id from getting get_options
+    network_id: "network_id"
+    # flavor_id-> use options get from role above
+    flavor_id: "flavor_id"
+    # image_id -> you can use image_id uploaded or created before hand or options
+    image_id: "image_id"
+    # ssh_key -> true or false if you want this server to use ssh_key set it to true, else set it to  false
+    ssh_key: false
+    # count of servers to create
+    count: 1
+    

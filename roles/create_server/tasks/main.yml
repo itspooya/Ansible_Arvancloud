@@ -1,0 +1,20 @@
+- name: Create Ubuntu server
+  uri:
+    url: https://napi.arvancloud.com/ecc/v1/regions/ir-thr-at1/servers
+    headers:
+      Authorization: {{ api_key }}
+      Content-Type: application/x-www-form-urlencoded
+    method: POST
+    body:
+      name: {{ server_name }}
+      key_name: {{ key_name }}
+      network_id: {{ network_id }}
+      flavor_id: {{ flavor_id }}
+      image_id: {{ image_id }}
+      ssh_key: {{ ssh_key_use }}
+      count: {{ count }}
+  register: create_server
+  
+- debug:
+  msg: "Server status {{ create_server.status }} and returned message is {{ create_server.msg }}
+
